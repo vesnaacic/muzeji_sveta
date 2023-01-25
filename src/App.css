@@ -185,6 +185,58 @@ a{
     margin: 8px;
   }
 
+  /*muzeji css*/
+  .row{
+    padding-top: 3%;
+    padding-bottom: 3%;
+    display: flex;
+    flex-wrap: wrap;
+	  justify-content: space-evenly;
+
+  }
+
+  .card-img-top{
+    height: 400px;
+    width: 650px;
+
+  }
+
+  .card {
+    border: #c35d38;
+    border-width: 2px;
+    inline-size: 600px;
+    overflow: hidden;
+    background-color: #5e2a2a;
+    opacity: 80%;
+
+
+  }
+
+  .card-title {
+    font-size: 29px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: -5px;
+    padding-bottom: 7px;
+    font-weight: 700;
+  }
+
+  .card-title:hover{
+    color: #c35d38;
+    transform: scale(1.2);
+    transition: ease-in 0.5s;
+  }
+
+  .card-text {
+    text-align: justify;
+    color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: -20px;
+    line-height: 40px;
+
+  }
+
 
 
 

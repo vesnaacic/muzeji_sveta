@@ -8,7 +8,7 @@ function NavBar() {
                 <ul className="nav__list">
 
                     <li className="nav__item">   <Link to='/'>POCETNA</Link></li>
-                    <li className="nav__item"> <Link to='/restorani'>MUZEIJI</Link></li>
+                    <li className="nav__item"> <Link to='/muzeji'>MUZEJI</Link></li>
                     <li className="nav__item"> 
 
                         <input type="text" id="kriterijum" placeholder="Search.." name="search"/>
