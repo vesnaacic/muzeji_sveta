@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Muzeji from './components/Muzeji';
 import { useState } from 'react';
 import Omiljeni from './components/Omiljeni';
+import Paginacija from './components/Paginacija';
 
 
 function App() {
@@ -142,6 +143,13 @@ function App() {
     setOmiljeniM(niz);
   }
 
+  const[currentPage, setCurrentPage] = useState(1);
+  const[postsPerPage, setPostsPerPage] = useState(4);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = sviMuzeji.slice(firstPostIndex, lastPostIndex);
+
 
   return (
     <div>
@@ -149,10 +157,11 @@ function App() {
         <NavBar pretrazi={pretrazi}></NavBar>
         <Routes>
             <Route path="/" element={<Pocetna></Pocetna>}></Route>
-            <Route path="/muzeji" element={<Muzeji kriterijum={krterijumPretrage} muzeji={sviMuzeji} dodaj={dodaj}></Muzeji>}></Route>
+            <Route path="/muzeji" element={<Muzeji kriterijum={krterijumPretrage} muzeji={currentPosts} dodaj={dodaj}></Muzeji>}></Route>
             <Route path="/omiljeni" element={<Omiljeni kriterijum={krterijumPretrage}  muzeji={omiljeniM} izbaci={izbaci}></Omiljeni>}></Route>
           </Routes>
      </BrowserRouter>
+     <Paginacija totalPosts = {sviMuzeji.length} postsPerPage = {postsPerPage} setCurrentPage = {setCurrentPage} /> 
      <Footer></Footer>
     </div>
   );
