@@ -1,4 +1,4 @@
-function Muzej({muz}) {
+function Muzej({muz, dodaj}) {
 
 
     return (
@@ -9,7 +9,9 @@ function Muzej({muz}) {
         <div className="card-body">
           <p className="card-title">{muz.naziv}</p>
           <p className="card-text">{muz.opis} <br /> Telefon: {muz.telefon} <br /> Adresa: {muz.adresa} <br /> </p>
-          <a href="#" className="btn btn-primary">Dodaj u omiljene</a>
+          <button href="#" className="btn btn-primary" style={{marginLeft: "20px" , opacity: "80%", 
+          padding:"5px", paddingLeft: "10px", paddingRight: "10px", border: "3px solid #EEEFEB"}}
+          onClick={()=>dodaj(muz.id)} > Dodaj u omiljene </button>
         </div>
       </div>
 

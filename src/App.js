@@ -6,9 +6,12 @@ import Pocetna from './components/Pocetna';
 import Footer from './components/Footer';
 import Muzeji from './components/Muzeji';
 import { useState } from 'react';
+import Omiljeni from './components/Omiljeni';
 
 
 function App() {
+  const [omiljeniM,setOmiljeniM]=useState([]);
+
   const[sviMuzeji] = useState([
 
     {
@@ -18,6 +21,7 @@ function App() {
         opis:"Luvr je najveći svetski muzej umetnosti i istorijski spomenik. Njegova kolekcija obuhvata istoriju dugu 9.000 godina i uključuje neka od najpoznatijih umetničkih dela na svetu, kao što su Mona Liza i Miloska Venera. Muzej sadrzi preko 300 hiljada eksponata. ",
         telefon: "+33 1 40 20 50 50",
         adresa:  "Rue de Rivoli, 75001 Paris, France",
+        omiljeni: 0
 
     },
     {
@@ -27,6 +31,7 @@ function App() {
       opis:"Metropoliten muzej umetnosti, poznat i kao Met, jedan je od najvećih i najsveobuhvatnijih muzeja umetnosti na svetu. Njegova kolekcija obuhvata preko 2 miliona umetničkih dela od antičkih do modernih vremena, uključujući čuveni američki institut za krilo i kostim. ",
       telefon: "+1 212-535-7710",
       adresa:  "1000 5th Ave, New York, NY 10028, USA",
+      omiljeni: 0
 
     },
     {
@@ -36,6 +41,7 @@ function App() {
       opis:"Britanski muzej je posvećen ljudskoj istoriji i kulturi i ima kolekciju od preko 8 miliona predmeta. Poznat je po svojoj egipatskoj kolekciji, koja uključuje Rozetski kamen, i po Elginovim mermerima iz Partenona u Atini.",
       telefon: "+44 20 7323 8299",
       adresa:  "Great Russell St, Bloomsbury, London WC1B 3DG, UK",
+      omiljeni: 0
 
      },
      {
@@ -45,6 +51,7 @@ function App() {
       opis: "Galerija Ufici je jedan od najstarijih i najpoznatijih muzeja umetnosti na svetu, sa velikom kolekcijom renesansne umetnosti. Sadrži radove poznatih umetnika kao što su Botičeli, Mikelanđelo i Rafael.",
       telefon: "+39 055 238 8651",
       adresa:  "Piazzale degli Uffizi, 6, 50122 Firenze FI, Italy",
+      omiljeni: 0
 
      },
      {
@@ -54,6 +61,7 @@ function App() {
       opis:"Vatikanski muzeji su zbirka muzeja smeštenih u Vatikanu i prikazuju dela iz ogromne kolekcije koju je Rimokatolička crkva gradila tokom vekova. Sadrži skulpture, freske i remek-dela kao što je Sikstinska kapela.",
       telefon: "+39 06 69883860",
       adresa:  "Viale Vaticano, 00120 Città del Vaticano, Vatican City",
+      omiljeni: 0
 
      },
      {
@@ -63,6 +71,7 @@ function App() {
       opis:"Državni muzej Ermitaž je jedan od najvećih i najstarijih muzeja na svetu, sa kolekcijom od preko 3 miliona predmeta. Poznat je po svojoj kolekciji zapadnoevropske umetnosti, uključujući dela Rembranta, Rubensa i Goje.",
       telefon: "+7 812 710-90-79",
       adresa:  "Palace Emb., 34, Sankt-Peterburg, Russia, 190000",
+      omiljeni: 0
 
      },
      {
@@ -72,6 +81,7 @@ function App() {
       opis:"Muzej Prado je jedan od najvažnijih muzeja umetnosti na svetu, sa kolekcijom koja se proteže od 12. do 19. veka. Poznat je po svojoj kolekciji španske umetnosti, uključujući dela Velaskeza, Goje i El Greka.",
       telefon: "+34 913 302 863",
       adresa:  "Calle de Felipe IV, s/n, 28071 Madrid, Spain",
+      omiljeni: 0
 
      },
      {
@@ -81,6 +91,7 @@ function App() {
       opis:"Muzej islamske umetnosti je jedan od najznačajnijih muzeja na svetu posvećen islamskoj umetnosti i kulturi. Ima kolekciju od preko 10.000 islamskih artefakata, uključujući keramiku, metalne radove, tekstil i rukopise.",
       telefon: "Al Corniche St, Doha, Qatar",
       adresa:  "+974 4442 4444",
+      omiljeni: 0
 
      },
     {
@@ -90,6 +101,8 @@ function App() {
       opis:"Nacionalni muzej Kine je najveći muzej kineske istorije i umetnosti na svetu. Sadrži preko 1,05 miliona artefakata i umetničkih dela, koji pokrivaju kinesku istoriju od najranijih vremena do danas. Sadrži drevnu kinesku umetnost i artefakte, bronzano posuđe, keramiku, žad, novčiće i kaligrafiju.",
       telefon: "+86 10 6511 6188",
       adresa:  "16 East Chang'an Avenue, Dongcheng District, Beijing, China",
+      omiljeni: 0
+
     },
     {
       id:10,
@@ -98,18 +111,36 @@ function App() {
       opis:"Nacionalni muzej antropologije je jedan od najvažnijih muzeja u Meksiku, posvećen proučavanju i očuvanju meksičke kulture i istorije. Sadrži ogromnu kolekciju pretkolumbijske umetnosti i artefakata, uključujući čuveni Astečki Sunčev kamen.",
       telefon: "+52 55 4040 5300",
       adresa:  "Av. Paseo de la Reforma s/n,11560 Ciudad de México, Mexico",
+      omiljeni: 0
     }
 
   ]);
+
+  const [krterijumPretrage,setKriterijumPretrage]=useState("");
+
+  function pretrazi(kriterijum){
+    setKriterijumPretrage(kriterijum);
+  }
+
+  function dodaj(id){
+    for(var i=0;i<sviMuzeji.length;i++){
+      if(sviMuzeji[i].id==id){
+        sviMuzeji[i].omiljeni=1;
+      }
+    }
+    var niz = sviMuzeji.filter((muz)=>muz.omiljeni==1);
+    setOmiljeniM(niz);
+  }
 
 
   return (
     <div>
     <BrowserRouter>
-        <NavBar></NavBar>
+        <NavBar pretrazi={pretrazi}></NavBar>
         <Routes>
             <Route path="/" element={<Pocetna></Pocetna>}></Route>
-            <Route path="/muzeji" element={<Muzeji  muzeji={sviMuzeji}></Muzeji>}></Route>
+            <Route path="/muzeji" element={<Muzeji kriterijum={krterijumPretrage} muzeji={sviMuzeji} dodaj={dodaj}></Muzeji>}></Route>
+            <Route path="/omiljeni" element={<Omiljeni kriterijum={krterijumPretrage}  muzeji={omiljeniM}></Omiljeni>}></Route>
           </Routes>
      </BrowserRouter>
      <Footer></Footer>
