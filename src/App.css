@@ -290,6 +290,39 @@ a{
     transform: scale(1.2);
   }
 
+  /* Brojevi stranica */
+
+.btnPaginacija{
+  box-shadow: inset 0 0 0 0 #8E9189;
+  transition: color .5s ease-in-out, box-shadow .5s ease-in-out;
+  float: left;
+  padding: 10px 15px;
+  margin-top: 8px;
+  margin-right: 16px;
+  margin-left: 60px;
+  background: #a19886;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: large;
+  
+}
+
+.btnPaginacija:hover{
+  background-color: #c35d38;
+    transition: ease-in 0.7s;
+}
+
+.paginacija {
+  padding-left: -50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  background-color: #dcccac;
+
+}
+
 
 
 
