@@ -132,6 +132,16 @@ function App() {
     setOmiljeniM(niz);
   }
 
+  function izbaci(id){
+    for(var i=0;i<sviMuzeji.length;i++){
+      if(sviMuzeji[i].id==id){
+        sviMuzeji[i].omiljeni=0;
+      }
+    }
+    var niz = sviMuzeji.filter((muz)=>muz.omiljeni==1);
+    setOmiljeniM(niz);
+  }
+
 
   return (
     <div>
@@ -140,7 +150,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Pocetna></Pocetna>}></Route>
             <Route path="/muzeji" element={<Muzeji kriterijum={krterijumPretrage} muzeji={sviMuzeji} dodaj={dodaj}></Muzeji>}></Route>
-            <Route path="/omiljeni" element={<Omiljeni kriterijum={krterijumPretrage}  muzeji={omiljeniM}></Omiljeni>}></Route>
+            <Route path="/omiljeni" element={<Omiljeni kriterijum={krterijumPretrage}  muzeji={omiljeniM} izbaci={izbaci}></Omiljeni>}></Route>
           </Routes>
      </BrowserRouter>
      <Footer></Footer>
